@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Advent of Code 2025
+#
+# Robert Haines
+#
+# Public Domain
+
+require_relative 'lib/aoc2025/extra/cli'
+
+days = AOC2025::Extra::CLI.parse_params(ARGV)
+
+unless days
+  warn 'Usage: aoc-2025 <day>'
+  exit 1
+end
+
+days.each do |day|
+  AOC2025::Extra::CLI.run_day(day)
+end
