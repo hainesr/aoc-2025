@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Advent of Code 2025
+#
+# Robert Haines
+#
+# Public Domain
+
+require 'bundler/setup'
+require_relative '../lib/aoc2025/days'
+
+require 'irb'
+IRB.start(__FILE__)

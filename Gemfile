@@ -9,6 +9,7 @@
 source 'https://rubygems.org'
 
 gem 'benchmark', '~> 0.5.0'
+gem 'irb', '~> 1.15.3'
 gem 'minitest', '~> 5.26'
 gem 'rake', '~> 13.3'
 gem 'rubocop', '~> 1.81.7'
