@@ -39,4 +39,10 @@ class AOC2025::SecretEntranceTest < Minitest::Test
 
     assert_equal(3, @se.part1)
   end
+
+  def test_part2
+    @se.setup(INPUT)
+
+    assert_equal(6, @se.part2)
+  end
 end

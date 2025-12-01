@@ -31,5 +31,24 @@ module AOC2025
 
       zeros
     end
+
+    def part2
+      pos = 50
+      zeros = 0
+
+      @rotations.each do |rotation|
+        saved_pos = pos
+        crossed_zeros, pos = (pos + rotation).divmod(DIAL_SIZE)
+        crossed_zeros = crossed_zeros.abs
+
+        crossed_zeros -= 1 if pos.zero? && rotation.positive?
+        crossed_zeros -= 1 if saved_pos.zero? && rotation.negative?
+        crossed_zeros += 1 if pos.zero?
+
+        zeros += crossed_zeros
+      end
+
+      zeros
+    end
   end
 end
