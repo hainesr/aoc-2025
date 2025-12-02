@@ -16,7 +16,8 @@ module AOC2025
 
   DAY_MAP = [
     'there_is_no_day_zero',
-    'secret_entrance'
+    'secret_entrance',
+    'gift_shop'
   ].freeze
 
   def self.class_from_day(day)
