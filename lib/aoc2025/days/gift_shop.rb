@@ -10,9 +10,6 @@ require_relative '../../aoc2025'
 
 module AOC2025
   class GiftShop < Day
-    REPEATER = /^(.+)\1$/
-    REPEATER_2 = /^(.+)\1+$/
-
     def setup(input = read_input_file.chomp)
       @ranges = input.split(',').map do |range|
         start, stop = range.split('-')
@@ -27,7 +24,8 @@ module AOC2025
         range.each do |num|
           next if num.length.odd?
 
-          total += num.to_i if REPEATER.match?(num)
+          mid_point = num.length / 2
+          total += num.to_i if num[0, mid_point] == num[mid_point, mid_point]
         end
       end
 
@@ -39,7 +37,7 @@ module AOC2025
 
       @ranges.each do |range|
         range.each do |num|
-          total += num.to_i if REPEATER_2.match?(num)
+          total += num.to_i if (num + num)[1..-2].include?(num)
         end
       end
 
