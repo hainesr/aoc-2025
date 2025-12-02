@@ -37,4 +37,10 @@ class AOC2025::GiftShopTest < Minitest::Test
 
     assert_equal(1_227_775_554, @gs.part1)
   end
+
+  def test_part2
+    @gs.setup(INPUT)
+
+    assert_equal(4_174_379_265, @gs.part2)
+  end
 end
