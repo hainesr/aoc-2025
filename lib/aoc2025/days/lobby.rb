@@ -20,6 +20,10 @@ module AOC2025
       @battery_banks.sum { |bank| high_joltage(bank) }
     end
 
+    def part2
+      @battery_banks.sum { |bank| high_joltage(bank, batteries: 12) }
+    end
+
     def high_joltage(bank, batteries: 2)
       select = []
 
