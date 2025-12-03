@@ -20,10 +20,18 @@ module AOC2025
       @battery_banks.sum { |bank| high_joltage(bank) }
     end
 
-    def high_joltage(bank)
-      tens = bank[...-1].max
-      start = bank.index(tens) + 1
-      (tens * 10) + bank[start..].max
+    def high_joltage(bank, batteries: 2)
+      select = []
+
+      while batteries.positive?
+        battery = bank[..-batteries].max
+        location = bank.index(battery) + 1
+        bank = bank[location..]
+        batteries -= 1
+        select << battery.to_s
+      end
+
+      select.join.to_i
     end
   end
 end
