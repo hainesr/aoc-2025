@@ -39,13 +39,13 @@ class AOC2025::PrintingDepartmentTest < Minitest::Test
     refute(rolls[[-1, 20]])
   end
 
-  def test_adjacent_count
+  def test_accessible?
     @pd.setup(INPUT)
 
-    assert_equal(3, @pd.adjacent_count(2, 0))
-    assert_equal(6, @pd.adjacent_count(1, 1))
-    assert_equal(3, @pd.adjacent_count(0, 1))
-    assert_equal(1, @pd.adjacent_count(0, 9))
+    assert(@pd.accessible?(2, 0))
+    refute(@pd.accessible?(1, 1))
+    assert(@pd.accessible?(0, 1))
+    assert(@pd.accessible?(0, 9))
   end
 
   def test_part1

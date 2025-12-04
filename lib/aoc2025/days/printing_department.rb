@@ -26,18 +26,20 @@ module AOC2025
 
     def part1
       @rolls.keys.count do |(x, y)|
-        adjacent_count(x, y) < 4
+        accessible?(x, y)
       end
     end
 
-    def adjacent_count(x, y)
+    def accessible?(x, y)
       count = 0
 
       NEIGHBOURS.each do |(dx, dy)|
         count += 1 if @rolls[[x + dx, y + dy]]
+
+        return false if count > 3
       end
 
-      count
+      true
     end
   end
 end
