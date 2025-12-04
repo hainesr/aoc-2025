@@ -18,7 +18,8 @@ module AOC2025
     'there_is_no_day_zero', # Day 0
     'secret_entrance',
     'gift_shop',
-    'lobby'
+    'lobby',
+    'printing_department'
   ].freeze
 
   def self.class_from_day(day)
