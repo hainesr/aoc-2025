@@ -53,4 +53,10 @@ class AOC2025::PrintingDepartmentTest < Minitest::Test
 
     assert_equal(13, @pd.part1)
   end
+
+  def test_part2
+    @pd.setup(INPUT)
+
+    assert_equal(43, @pd.part2)
+  end
 end

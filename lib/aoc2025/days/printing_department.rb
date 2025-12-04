@@ -30,7 +30,24 @@ module AOC2025
       end
     end
 
-    def accessible?(x, y)
+    def part2
+      sum = 0
+      count = 0
+
+      loop do
+        @rolls.each_key do |(x, y)|
+          count += 1 if accessible?(x, y, remove: true)
+        end
+        break if count.zero?
+
+        sum += count
+        count = 0
+      end
+
+      sum
+    end
+
+    def accessible?(x, y, remove: false)
       count = 0
 
       NEIGHBOURS.each do |(dx, dy)|
@@ -39,6 +56,7 @@ module AOC2025
         return false if count > 3
       end
 
+      @rolls.delete([x, y]) if remove
       true
     end
   end
