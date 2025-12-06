@@ -19,7 +19,9 @@ module AOC2025
     'secret_entrance',
     'gift_shop',
     'lobby',
-    'printing_department'
+    'printing_department',
+    nil,
+    'trash_compactor'
   ].freeze
 
   def self.class_from_day(day)
