@@ -21,7 +21,7 @@ class AOC2025::TrashCompactorTest < Minitest::Test
     @tc = AOC2025::TrashCompactor.new
   end
 
-  def test_setup
+  def test_parse_part1
     @tc.setup(INPUT)
 
     expected_columns = [
@@ -31,7 +31,7 @@ class AOC2025::TrashCompactorTest < Minitest::Test
       [64, 23, 314, :+]
     ]
 
-    assert_equal(expected_columns, @tc.instance_variable_get(:@columns))
+    assert_equal(expected_columns, @tc.parse_part1(@tc.instance_variable_get(:@lines)))
   end
 
   def test_part1
