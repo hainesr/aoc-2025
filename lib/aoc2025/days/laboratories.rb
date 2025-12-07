@@ -12,7 +12,7 @@ module AOC2025
   class Laboratories < Day
     def setup(input = read_input_file.chomp)
       @start_position = nil
-      @spliters = []
+      @spliters = Hash.new { |h, k| h[k] = [] }
 
       input.lines(chomp: true).each_with_index do |line, y|
         line.chars.each_with_index do |char, x|
@@ -20,26 +20,26 @@ module AOC2025
           when 'S'
             @start_position = x
           when '^'
-            @spliters << [x, y]
+            @spliters[y] << x
           end
         end
       end
     end
 
     def part1
-      max_y = @spliters.map { |_, y| y }.max
+      max_y = @spliters.keys.max
       splits = 0
       beams = [[@start_position, 0]]
 
       while beams.first[1] < max_y
-        beams, new_splits = step_beams(beams)
+        beams, new_splits = step_beams1(beams)
         splits += new_splits
       end
 
       splits
     end
 
-    def step_beams(beams)
+    def step_beams1(beams)
       new_beams = []
       splits = 0
 
@@ -48,7 +48,7 @@ module AOC2025
         new_y = y + 1
 
         # Check for splitters at the new position.
-        if @spliters.include?([x, new_y])
+        if @spliters[new_y].include?(x)
           # Split the beam into two beams, left and right.
           splits += 1
           new_beams << [x - 1, new_y]
