@@ -20,7 +20,7 @@ module AOC2025
     'gift_shop',
     'lobby',
     'printing_department',
-    nil,
+    'cafeteria',            # Day 5
     'trash_compactor'
   ].freeze
 
