@@ -13,11 +13,12 @@ module AOC2025
     def setup(input = read_input_file.chomp)
       ranges, ids = input.split("\n\n").map { |section| section.split("\n") }
 
-      @ranges = ranges.map do |range|
+      ranges = ranges.map do |range|
         min, max = range.split('-').map(&:to_i)
         (min..max)
       end
 
+      @ranges = merge_ranges(ranges)
       @ids = ids.map(&:to_i)
     end
 
@@ -28,7 +29,11 @@ module AOC2025
     end
 
     def part2
-      ranges = @ranges.sort_by(&:begin)
+      @ranges.sum { |range| range.end - range.begin + 1 }
+    end
+
+    def merge_ranges(ranges)
+      ranges = ranges.sort_by(&:begin)
       merged_ranges = []
       current_range = ranges.shift
 
@@ -42,7 +47,7 @@ module AOC2025
       end
       merged_ranges << current_range
 
-      merged_ranges.sum { |range| range.end - range.begin + 1 }
+      merged_ranges
     end
   end
 end

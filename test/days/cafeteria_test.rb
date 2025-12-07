@@ -31,12 +31,7 @@ class AOC2025::CafeteriaTest < Minitest::Test
   def test_setup
     @cafe.setup(INPUT)
 
-    expected_ranges = [
-      (3..5),
-      (10..14),
-      (16..20),
-      (12..18)
-    ]
+    expected_ranges = [(3..5), (10..20)]
     expected_ids = [1, 5, 8, 11, 17, 32]
 
     assert_equal(expected_ranges, @cafe.instance_variable_get(:@ranges))
