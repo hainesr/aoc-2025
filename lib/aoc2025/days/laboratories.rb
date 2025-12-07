@@ -11,77 +11,49 @@ require_relative '../../aoc2025'
 module AOC2025
   class Laboratories < Day
     def setup(input = read_input_file.chomp)
-      @start_position = nil
-      @spliters = Hash.new { |h, k| h[k] = [] }
+      start_position = nil
+      splitters = Hash.new { |h, k| h[k] = [] }
 
       input.lines(chomp: true).each_with_index do |line, y|
         line.chars.each_with_index do |char, x|
           case char
           when 'S'
-            @start_position = x
+            start_position = x
           when '^'
-            @spliters[y] << x
+            splitters[y] << x
           end
         end
       end
 
-      @grid_width = (@start_position * 2) + 1
+      @splits, @beam_counts = step_beams(splitters, start_position)
     end
 
     def part1
-      max_y = @spliters.keys.max
-      splits = 0
-      beams = [[@start_position, 0]]
-
-      while beams.first[1] < max_y
-        beams, new_splits = step_beams1(beams)
-        splits += new_splits
-      end
-
-      splits
+      @splits
     end
 
     def part2
-      beam_counts = [0] * @grid_width
-      beam_counts[@start_position] = 1
-      max_y = @spliters.keys.max
+      @beam_counts
+    end
 
-      (0..max_y).each do |y|
-        next unless @spliters.key?(y)
+    def step_beams(splitters, start_position)
+      beam_counts = [0] * ((start_position * 2) + 1)
+      beam_counts[start_position] = 1
+      splits = 0
 
-        @spliters[y].each do |x|
+      (0..splitters.keys.max).each do |y|
+        next unless splitters.key?(y)
+
+        splitters[y].each do |x|
           count = beam_counts[x]
+          splits += 1 if count.positive?
           beam_counts[x] = 0
           beam_counts[x - 1] += count
           beam_counts[x + 1] += count
         end
       end
 
-      beam_counts.sum
-    end
-
-    def step_beams1(beams)
-      new_beams = []
-      splits = 0
-
-      beams.each do |(x, y)|
-        # Beams always move down one row.
-        new_y = y + 1
-
-        # Check for splitters at the new position.
-        if @spliters[new_y].include?(x)
-          # Split the beam into two beams, left and right.
-          splits += 1
-          new_beams << [x - 1, new_y]
-          new_beams << [x + 1, new_y]
-        else
-          # Continue the beam straight down.
-          new_beams << [x, new_y]
-        end
-      end
-
-      # Return the new beams (de-duplicated) and the number of splits that occurred.
-      [new_beams.uniq, splits]
+      [splits, beam_counts.sum]
     end
   end
 end
