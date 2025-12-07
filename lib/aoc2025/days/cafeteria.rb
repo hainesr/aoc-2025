@@ -26,5 +26,23 @@ module AOC2025
         @ranges.any? { |range| range.cover?(id) }
       end
     end
+
+    def part2
+      ranges = @ranges.sort_by(&:begin)
+      merged_ranges = []
+      current_range = ranges.shift
+
+      ranges.each do |range|
+        if current_range.end >= range.begin - 1
+          current_range = (current_range.begin..[current_range.end, range.end].max)
+        else
+          merged_ranges << current_range
+          current_range = range
+        end
+      end
+      merged_ranges << current_range
+
+      merged_ranges.sum { |range| range.end - range.begin + 1 }
+    end
   end
 end

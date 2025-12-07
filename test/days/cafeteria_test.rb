@@ -48,4 +48,10 @@ class AOC2025::CafeteriaTest < Minitest::Test
 
     assert_equal(3, @cafe.part1)
   end
+
+  def test_part2
+    @cafe.setup(INPUT)
+
+    assert_equal(14, @cafe.part2)
+  end
 end
