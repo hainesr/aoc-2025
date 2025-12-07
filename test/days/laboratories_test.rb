@@ -36,6 +36,7 @@ class AOC2025::LaboratoriesTest < Minitest::Test
   def test_setup
     @labs.setup(INPUT)
 
+    assert_equal(15, @labs.instance_variable_get(:@grid_width))
     assert_equal(7, @labs.instance_variable_get(:@start_position))
     assert_equal(
       {
@@ -80,5 +81,11 @@ class AOC2025::LaboratoriesTest < Minitest::Test
     @labs.setup(INPUT)
 
     assert_equal(21, @labs.part1)
+  end
+
+  def test_part2
+    @labs.setup(INPUT)
+
+    assert_equal(40, @labs.part2)
   end
 end

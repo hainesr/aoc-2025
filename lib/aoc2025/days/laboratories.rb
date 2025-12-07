@@ -24,6 +24,8 @@ module AOC2025
           end
         end
       end
+
+      @grid_width = (@start_position * 2) + 1
     end
 
     def part1
@@ -37,6 +39,25 @@ module AOC2025
       end
 
       splits
+    end
+
+    def part2
+      beam_counts = [0] * @grid_width
+      beam_counts[@start_position] = 1
+      max_y = @spliters.keys.max
+
+      (0..max_y).each do |y|
+        next unless @spliters.key?(y)
+
+        @spliters[y].each do |x|
+          count = beam_counts[x]
+          beam_counts[x] = 0
+          beam_counts[x - 1] += count
+          beam_counts[x + 1] += count
+        end
+      end
+
+      beam_counts.sum
     end
 
     def step_beams1(beams)
