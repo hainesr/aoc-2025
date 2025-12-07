@@ -21,7 +21,8 @@ module AOC2025
     'lobby',
     'printing_department',
     'cafeteria',            # Day 5
-    'trash_compactor'
+    'trash_compactor',
+    'laboratories'
   ].freeze
 
   def self.class_from_day(day)
