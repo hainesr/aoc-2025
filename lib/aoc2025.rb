@@ -22,7 +22,12 @@ module AOC2025
     'printing_department',
     'cafeteria',            # Day 5
     'trash_compactor',
-    'laboratories'
+    'laboratories',
+    nil,
+    nil,
+    nil,                    # Day 10
+    nil,
+    'christmas_tree_farm'
   ].freeze
 
   def self.class_from_day(day)
