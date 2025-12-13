@@ -76,4 +76,10 @@ class AOC2025::ChristmasTreeFarmTest < Minitest::Test
   #
   #   assert_equal(2, @ctf.part1)
   # end
+
+  def test_part2
+    @ctf.setup(INPUT)
+
+    assert_equal('There is no part 2 today.', @ctf.part2)
+  end
 end

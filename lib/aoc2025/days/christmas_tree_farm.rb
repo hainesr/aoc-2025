@@ -23,6 +23,10 @@ module AOC2025
       end
     end
 
+    def part2
+      'There is no part 2 today.'
+    end
+
     def parse_shapes(shape_sections)
       shape_sections.map do |section|
         lines = section.lines(chomp: true)
