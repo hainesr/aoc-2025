@@ -23,6 +23,22 @@ class AOC2025::ReactorTest < Minitest::Test
     iii: out
   EOI
 
+  INPUT_2 = <<~EOI
+    svr: aaa bbb
+    aaa: fft
+    fft: ccc
+    bbb: tty
+    tty: ccc
+    ccc: ddd eee
+    ddd: hub
+    hub: fff
+    eee: dac
+    dac: fff
+    fff: ggg hhh
+    ggg: out
+    hhh: out
+  EOI
+
   def setup
     @reactor = AOC2025::Reactor.new
   end
@@ -49,5 +65,11 @@ class AOC2025::ReactorTest < Minitest::Test
     @reactor.setup(INPUT)
 
     assert_equal(5, @reactor.part1)
+  end
+
+  def test_part2
+    @reactor.setup(INPUT_2)
+
+    assert_equal(2, @reactor.part2)
   end
 end

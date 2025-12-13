@@ -21,6 +21,16 @@ module AOC2025
       traverse(:you)
     end
 
+    def part2
+      memo = {}
+
+      to_fft = traverse(:svr, :fft, memo)
+      to_dac = traverse(:fft, :dac, memo)
+      to_out = traverse(:dac, :out, memo)
+
+      to_fft * to_dac * to_out
+    end
+
     def traverse(start, end_device = :out, memo = {})
       key = [start, end_device].freeze
       return memo[key] if memo.key?(key)
