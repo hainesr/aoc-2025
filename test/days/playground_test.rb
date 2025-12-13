@@ -71,4 +71,10 @@ class AOC2025::PlaygroundTest < Minitest::Test
 
     assert_equal(40, @playground.part1(10))
   end
+
+  def test_part2
+    @playground.setup(INPUT)
+
+    assert_equal(25_272, @playground.part2)
+  end
 end

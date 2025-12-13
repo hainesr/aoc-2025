@@ -35,6 +35,17 @@ module AOC2025
       sizes.uniq.sort.reverse.take(3).reduce(:*)
     end
 
+    def part2
+      ds = Common::DisjointSet.new(@junctions)
+
+      x, y = @junction_pairs.each do |u, v|
+        ds.union(u, v)
+        break [u, v] if ds.size(u) >= @junctions.size
+      end
+
+      x.first * y.first
+    end
+
     def euclidean_distance(u, v)
       Math.sqrt(((u[0] - v[0])**2) + ((u[1] - v[1])**2) + ((u[2] - v[2])**2))
     end
