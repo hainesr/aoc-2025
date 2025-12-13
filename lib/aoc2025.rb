@@ -23,7 +23,7 @@ module AOC2025
     'cafeteria',            # Day 5
     'trash_compactor',
     'laboratories',
-    nil,
+    'playground',
     nil,
     nil,                    # Day 10
     nil,
