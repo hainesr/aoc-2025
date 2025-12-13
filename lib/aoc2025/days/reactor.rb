@@ -21,17 +21,16 @@ module AOC2025
       traverse(:you)
     end
 
-    def traverse(start, end_device = :out, visited = [])
-      return 1 if start == end_device
+    def traverse(start, end_device = :out, memo = {})
+      key = [start, end_device].freeze
+      return memo[key] if memo.key?(key)
+      return memo[key] = 1 if start == end_device
 
-      total_paths = 0
-      @device_map[start].each do |next_device|
-        next if visited.include?(next_device)
+      memo[key] = @device_map[start].sum do |next_device|
+        next 0 if next_device == :out && end_device != :out
 
-        total_paths += traverse(next_device, end_device, visited + [start])
+        traverse(next_device, end_device, memo)
       end
-
-      total_paths
     end
   end
 end
