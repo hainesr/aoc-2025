@@ -26,7 +26,7 @@ module AOC2025
     'playground',
     nil,
     nil,                    # Day 10
-    nil,
+    'reactor',
     'christmas_tree_farm'
   ].freeze
 
